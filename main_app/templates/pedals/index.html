@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Pedal List</h1>
+
+{% for pedal in pedals %}
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ pedal.brand }} {{ pedal.name }}</span>
+    <p>Style: {{ pedal.style }}</p>
+    <p>Description: {{ pedal.description }}</p>
+    <p>Power Requirements: {{ pedal.voltage }}V {{ pedal.amperage }}mA</p>
+  </div>
+</div>
+{% endfor %} {% endblock %}
