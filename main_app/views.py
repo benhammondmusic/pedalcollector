@@ -1,8 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Pedal
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from .forms import KnobForm
+from django.shortcuts import render, redirect
 # from .pedals_list import pedals
 
 # load up from database
@@ -18,9 +18,22 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+def add_knob(request, pedal_id):
+  form = KnobForm(request.POST)
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the pedal_id assigned
+    new_knob = form.save(commit=False)
+    new_knob.pedal_id = pedal_id
+    new_knob.save()
+  return redirect('detail', pedal_id=pedal_id)
+
 def pedals_detail(request, pedal_id):
   pedal = Pedal.objects.get(id=pedal_id)
-  return render(request, 'pedals/detail.html', { 'pedal': pedal })
+  # instantiate KnobForm to be rendered in the template
+  knob_form = KnobForm()
+  context = { 'pedal': pedal, 'knob_form': knob_form }
+  return render(request, 'pedals/detail.html', context)
 
 class PedalCreate(CreateView):
   model = Pedal
@@ -34,3 +47,8 @@ class PedalUpdate(UpdateView):
 class PedalDelete(DeleteView):
   model = Pedal
   success_url = '/pedals/'
+
+
+
+
+

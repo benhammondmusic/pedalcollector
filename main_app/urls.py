@@ -8,5 +8,6 @@ urlpatterns = [
     path('pedals/<int:pedal_id>/', views.pedals_detail, name='detail'),
     path('pedals/create/', views.PedalCreate.as_view(), name='pedals_create'),
     path('pedals/<int:pk>/update/', views.PedalUpdate.as_view(), name='pedals_update'),
-path('pedals/<int:pk>/delete/', views.PedalDelete.as_view(), name='pedals_delete'),
+    path('pedals/<int:pk>/delete/', views.PedalDelete.as_view(), name='pedals_delete'),
+    path('pedals/<int:pedal_id>/add_knob/', views.add_knob, name='add_knob'),
 ]

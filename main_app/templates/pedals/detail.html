@@ -2,27 +2,61 @@
 
 <h1>Pedal Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ pedal.brand }} {{ pedal.name }}</span>
-    <p>Style: {{ pedal.style }}</p>
-    <p>Description: {{ pedal.description }}</p>
-    <p>Power Requirements: {{ pedal.voltage }}V {{ pedal.amperage }}mA</p>
-    <p>
-      {% if pedal.voltage != 9 %}
-      <span class="teal white-text">(!) Non-standard voltage! </span>
-      {% endif %} {% if pedal.amperage > 100 %}
-      <span class="white-text red darken-4">(+) High current! </span>
-      {% elif pedal.amperage < 50 %}
-      <span class="white-text blue darken-1">(-) Low draw</span>
-      {% endif %}
-    </p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ pedal.brand }} {{ pedal.name }}</span>
+        <p>Style: {{ pedal.style }}</p>
+        <p>Description: {{ pedal.description }}</p>
+        <p>Power Requirements: {{ pedal.voltage }}V {{ pedal.amperage }}mA</p>
+        <p>
+          {% if pedal.voltage != 9 %}
+          <span class="teal white-text">(!) Non-standard voltage! </span>
+          {% endif %} {% if pedal.amperage > 100 %}
+          <span class="white-text red darken-4">(+) High current! </span>
+          {% elif pedal.amperage < 50 %}
+          <span class="white-text blue darken-1">(-) Low draw</span>
+          {% endif %}
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'pedals_update' pedal.id %}">Edit</a>
+        <a href="{% url 'pedals_delete' pedal.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-
-  <div class="card-action">
-    <a href="{% url 'pedals_update' pedal.id %}">Edit</a>
-    <a href="{% url 'pedals_delete' pedal.id %}">Delete</a>
+  <div class="col s6">
+    <form action="{% url 'add_knob' pedal.id %}" method="post">
+      {% csrf_token %} {{ knob_form.as_p }}
+      <input type="submit" class="btn" value="Add a Knob" />
+    </form>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Setting Name</th>
+          <th>Current Value</th>
+          <th>Max Value</th>
+          <th>Sweep Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for knob in pedal.knob_set.all %}
+        <tr>
+          <td>{{knob.setting_name}}</td>
+          <td>{{knob.current_value}}</td>
+          <td>{{knob.max_value}}</td>
+          <td>{{knob.get_sweep_type_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+
+<script>
+  var selectEl = document.getElementById('id_sweep_type');
+  M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}
