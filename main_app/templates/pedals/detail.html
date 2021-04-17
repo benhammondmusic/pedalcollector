@@ -9,6 +9,11 @@
     <p>Description: {{ pedal.description }}</p>
     <p>Power Requirements: {{ pedal.voltage }}V {{ pedal.amperage }}mA</p>
   </div>
+
+  <div class="card-action">
+    <a href="{% url 'pedals_update' pedal.id %}">Edit</a>
+    <a href="{% url 'pedals_delete' pedal.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}

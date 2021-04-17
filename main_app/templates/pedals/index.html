@@ -12,11 +12,11 @@
       <p>Power Requirements: {{ pedal.voltage }}V {{ pedal.amperage }}mA</p>
       <p>
         {% if pedal.voltage != 9 %}
-        <span>(!) Non-standard voltage! </span>
+        <span class="teal white-text">(!) Non-standard voltage! </span>
         {% endif %} {% if pedal.amperage > 100 %}
-        <span>(+) High current pedal! </span>
+        <span class="white-text red darken-4">(+) High current pedal! </span>
         {% elif pedal.amperage < 50 %}
-        <span>(-) Low draw pedal.</span>
+        <span class="white-text blue darken-1">(-) Low draw pedal</span>
         {% endif %}
       </p>
     </div>
