@@ -4,7 +4,7 @@
 
 {% for pedal in pedals %}
 <div class="card">
-  <a href="{% url 'detail' pedal.id %}">
+  <a class="indigo-text" href="{% url 'detail' pedal.id %}">
     <div class="card-content">
       <span class="card-title">{{ pedal.brand }} {{ pedal.name }}</span>
       <p>Style: {{ pedal.style }}</p>
@@ -14,9 +14,9 @@
         {% if pedal.voltage != 9 %}
         <span class="teal white-text">(!) Non-standard voltage! </span>
         {% endif %} {% if pedal.amperage > 100 %}
-        <span class="white-text red darken-4">(+) High current pedal! </span>
+        <span class="white-text red darken-4">(+) High current! </span>
         {% elif pedal.amperage < 50 %}
-        <span class="white-text blue darken-1">(-) Low draw pedal</span>
+        <span class="white-text blue darken-1">(-) Low draw</span>
         {% endif %}
       </p>
     </div>

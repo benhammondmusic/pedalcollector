@@ -8,6 +8,15 @@
     <p>Style: {{ pedal.style }}</p>
     <p>Description: {{ pedal.description }}</p>
     <p>Power Requirements: {{ pedal.voltage }}V {{ pedal.amperage }}mA</p>
+    <p>
+      {% if pedal.voltage != 9 %}
+      <span class="teal white-text">(!) Non-standard voltage! </span>
+      {% endif %} {% if pedal.amperage > 100 %}
+      <span class="white-text red darken-4">(+) High current! </span>
+      {% elif pedal.amperage < 50 %}
+      <span class="white-text blue darken-1">(-) Low draw</span>
+      {% endif %}
+    </p>
   </div>
 
   <div class="card-action">
