@@ -16,6 +16,16 @@ class Pedal(models.Model):
     amperage = models.IntegerField()
     voltage = models.IntegerField()
 
+    def goes_to_11(self):
+        return self.knob_set.filter(max_value=11).count() >= 1
+        # return whether or not any of the knobs on this pedal go to eleven (or more)
+        # for knob in self.knob_set:
+            # print (knob)
+            # if knob.max_value  >= 11: return True
+        # return False
+        
+
+
     def __str__(self):
         return self.name
 

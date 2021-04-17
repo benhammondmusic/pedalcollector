@@ -29,8 +29,16 @@
   <div class="col s6">
     <form action="{% url 'add_knob' pedal.id %}" method="post">
       {% csrf_token %} {{ knob_form.as_p }}
-      <input type="submit" class="btn" value="Add a Knob" />
+      <input type="submit" class="btn" value="Add Knob" />
     </form>
+
+    <br />
+    {% if pedal.goes_to_11 %}
+    <div class="card-panel teal-text center-align">{{pedal.name}}: This one goes to eleven!!!</div>
+    {% else %}
+    <div class="card-panel red-text center-align">{{pedal.name}}: No, don't even touch. Don't even look at it. Time to look away now.</div>
+    {% endif %}
+
     <table class="striped">
       <thead>
         <tr>
