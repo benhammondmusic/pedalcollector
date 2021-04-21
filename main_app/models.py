@@ -11,8 +11,8 @@ class Guitar(models.Model):
     brand = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
-    year = models.IntegerField(max_length=4)
-    serial_number = models.IntegerField(max_length=100)
+    year = models.IntegerField()
+    serial_number = models.IntegerField()
 
     # Other goodness such as 'def __str__():' below
     def __str__(self):
