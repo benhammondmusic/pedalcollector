@@ -82,8 +82,11 @@ class Delete_guitar(DeleteView):
     success_url = '/guitars/'     
 
 def assoc_guitar(request, pedal_id, guitar_id):
-  # Note that you can pass a guitar's id instead of the whole object
   Pedal.objects.get(id=pedal_id).guitars.add(guitar_id)
+  return redirect('detail', pedal_id=pedal_id)
+
+def disassociate_guitar(request, pedal_id, guitar_id):
+  Pedal.objects.get(id=pedal_id).guitars.remove(guitar_id)
   return redirect('detail', pedal_id=pedal_id)
 
 

@@ -73,6 +73,12 @@
       <div class="card-content">
         <span class="card-title">🎸{{ guitar.year }} <span style="color: {{ guitar.color }}">{{ guitar.color }}</span> {{ guitar.brand }} {{ guitar.model }} </span>
       </div>
+      <div class="card-action">
+        <form action="{% url 'disassociate_guitar' pedal.id guitar.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">Remove</button>
+        </form>
+      </div>
     </div>
     {% empty %}
     <h5>😕 No guitars sound great that we know of</h5>
