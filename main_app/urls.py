@@ -12,6 +12,7 @@ urlpatterns = [
     path('pedals/<int:pk>/update/', views.PedalUpdate.as_view(), name='pedals_update'),
     path('pedals/<int:pk>/delete/', views.PedalDelete.as_view(), name='pedals_delete'),
     path('pedals/<int:pedal_id>/add_knob/', views.add_knob, name='add_knob'),
+    path('pedals/<int:pedal_id>/assoc_guitar/<int:guitar_id>/', views.assoc_guitar, name='assoc_guitar'),
 
     # guitars routes
     path('guitars/', views.guitars_index, name='all_guitars'),

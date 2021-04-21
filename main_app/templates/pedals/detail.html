@@ -36,7 +36,7 @@
     {% if pedal.goes_to_11 %}
     <div class="card-panel teal-text center-align">{{pedal.name}}: This one goes to eleven!!!</div>
     {% else %}
-    <div class="card-panel red-text center-align">{{pedal.name}}: No, don't even touch. Don't even look at it. Time to look away now.</div>
+    <div class="card-panel red-text center-align">{{pedal.name}}: Does not go to 11.<br />No, don't even touch. Don't even look at it. Time to look away now.</div>
     {% endif %}
 
     <table class="striped">
@@ -62,9 +62,47 @@
   </div>
 </div>
 
-<script>
-  var selectEl = document.getElementById('id_sweep_type');
-  M.FormSelect.init(selectEl);
-</script>
+<!-- This is all new markup to be added just above the <script> tag -->
+<hr />
+<div class="row">
+  <div class="col s6">
+    <h3>Guitars that sound great with the {{ pedal.brand }} {{ pedal.name }}</h3>
 
-{% endblock %}
+    {% for guitar in pedal.guitars.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">🎸{{ guitar.year }} <span style="color: {{ guitar.color }}">{{ guitar.color }}</span> {{ guitar.brand }} {{ guitar.model }} </span>
+      </div>
+    </div>
+    {% empty %}
+    <h5>😕 No guitars sound great that we know of</h5>
+    {% endfor %}
+  </div>
+  <!-- Available guitars will come after this line -->
+
+  <div class="col s6">
+    <h3>Available Guitars</h3>
+    {% if guitars.count %} {% for guitar in guitars.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title"> 🎸{{ guitar.year }} <span style="color: {{ guitar.color }}">{{ guitar.color }}</span> {{ guitar.brand }} {{ guitar.model }} </span>
+      </div>
+      <div class="card-action">
+        <form action="{% url 'assoc_guitar' pedal.id guitar.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>{{ pedal.brand }} {{ pedal.name }} sounds great with every guitar we've tried!</h5>
+    {% endif %}
+  </div>
+
+  <script>
+    var selectEl = document.getElementById('id_sweep_type');
+    M.FormSelect.init(selectEl);
+  </script>
+
+  {% endblock %}
+</div>

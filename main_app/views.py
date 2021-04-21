@@ -34,9 +34,9 @@ def add_knob(request, pedal_id):
 
 def pedals_detail(request, pedal_id):
   pedal = Pedal.objects.get(id=pedal_id)
-  # instantiate KnobForm to be rendered in the template
+  unmatched_guitars = Guitar.objects.exclude(id__in = pedal.guitars.all().values_list('id'))
   knob_form = KnobForm()
-  context = { 'pedal': pedal, 'knob_form': knob_form }
+  context = { 'pedal': pedal, 'knob_form': knob_form, "guitars": unmatched_guitars }
   return render(request, 'pedals/detail.html', context)
 
 class PedalCreate(CreateView):
@@ -81,7 +81,9 @@ class Delete_guitar(DeleteView):
     model = Guitar
     success_url = '/guitars/'     
 
-
-
+def assoc_guitar(request, pedal_id, guitar_id):
+  # Note that you can pass a guitar's id instead of the whole object
+  Pedal.objects.get(id=pedal_id).guitars.add(guitar_id)
+  return redirect('detail', pedal_id=pedal_id)
 
 
