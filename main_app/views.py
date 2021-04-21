@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Pedal
+from .models import Pedal, Guitar
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import KnobForm
 from django.shortcuts import render, redirect
@@ -28,6 +28,10 @@ def add_knob(request, pedal_id):
     new_knob.save()
   return redirect('detail', pedal_id=pedal_id)
 
+
+
+# Pedals views
+
 def pedals_detail(request, pedal_id):
   pedal = Pedal.objects.get(id=pedal_id)
   # instantiate KnobForm to be rendered in the template
@@ -47,6 +51,35 @@ class PedalUpdate(UpdateView):
 class PedalDelete(DeleteView):
   model = Pedal
   success_url = '/pedals/'
+
+# Guitars views
+
+def guitars_index(request):
+    guitars = Guitar.objects.all()
+    context = {'guitars': guitars}
+    
+    return render(request, 'guitar/index.html', context)
+
+
+def guitar_detail(request, guitar_id):
+    guitar = Guitar.objects.get(id=guitar_id)
+    context = {
+        'guitar': guitar
+    }
+    return render(request, 'guitar/detail.html', context)
+    
+class Create_Guitar(CreateView):
+    model = Guitar
+    fields = '__all__'
+
+
+class Update_guitar(UpdateView):
+    model = Guitar
+    fields = ["brand", "model", "color", "year"]
+
+class Delete_guitar(DeleteView):
+    model = Guitar
+    success_url = '/guitars/'     
 
 
 

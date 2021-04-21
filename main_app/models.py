@@ -7,6 +7,23 @@ SWEEP_TYPES = (
     ('D', 'Discrete')
 )
 
+class Guitar(models.Model):
+    brand = models.CharField(max_length=50)
+    model = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+    year = models.IntegerField(max_length=4)
+    serial_number = models.IntegerField(max_length=100)
+
+    # Other goodness such as 'def __str__():' below
+    def __str__(self):
+        return f'{self.year} {self.color} {self.brand} {self.model}\n#{self.serial_number}'
+
+    # Add this method
+    def get_absolute_url(self):
+        return reverse('guitar_detail', kwargs={'guitar_id': self.id})    
+        class Meta:
+            ordering = ['-date']
+
 
 class Pedal(models.Model):
     name = models.CharField(max_length=100)
@@ -15,16 +32,11 @@ class Pedal(models.Model):
     description = models.CharField(max_length=255)
     amperage = models.IntegerField()
     voltage = models.IntegerField()
+    guitars = models.ManyToManyField(Guitar)
+    
 
     def goes_to_11(self):
         return self.knob_set.filter(max_value=11).count() >= 1
-        # return whether or not any of the knobs on this pedal go to eleven (or more)
-        # for knob in self.knob_set:
-            # print (knob)
-            # if knob.max_value  >= 11: return True
-        # return False
-        
-
 
     def __str__(self):
         return self.name
