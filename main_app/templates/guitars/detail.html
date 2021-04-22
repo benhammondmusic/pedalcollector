@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Guitar Details</h1>
+
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ guitar.brand }} {{ guitar.model }}</span>
+        <p>Color: {{ guitar.color }}</p>
+        <p>Year: {{ guitar.year }}</p>
+        <p>Serial Number: #{{ guitar.serial_number }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'update_guitar' guitar.id %}">Edit</a>
+        <a href="{% url 'delete_guitar' guitar.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

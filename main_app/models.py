@@ -21,8 +21,8 @@ class Guitar(models.Model):
     # Add this method
     def get_absolute_url(self):
         return reverse('guitar_detail', kwargs={'guitar_id': self.id})    
-        class Meta:
-            ordering = ['-date']
+        # class Meta:
+        #     ordering = ['-date']
 
 
 class Pedal(models.Model):
@@ -57,3 +57,9 @@ class Knob(models.Model):
     # Nice method for obtaining the friendly value of a Field.choice
         return f"{self.get_sweep_type_display()} {self.setting_name} knob: set to {self.current_value}/{self.max_value}"
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    pedal = models.ForeignKey(Pedal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for pedal_id: {self.pedal_id} @{self.url}"

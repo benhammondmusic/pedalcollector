@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Guitar List</h1>
+
+{% for guitar in guitars %}
+<div class="card">
+  <a class="indigo-text" href="{% url 'guitar_detail' guitar.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ guitar.brand }} {{ guitar.model }}</span>
+      <p>Color: {{ guitar.color }}</p>
+      <p>Year: {{ guitar.year }}</p>
+      <p>Serial Number: #{{ guitar.serial_number }}</p>
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
