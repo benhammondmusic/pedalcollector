@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-g)(gxu!w)kc23mstg9jw@#-@k81r#!u_lo=5a)d-j9k6hwhl$b
 #DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://pedalcollector.herokuapp.com/',
-'localhost',
-'127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapp.com/', 'localhost', '127.0.0.1']
 
 
 # Application definition
