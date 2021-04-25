@@ -12,7 +12,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from decouple import config
 
 
-# https://s3-us-east-2.amazonaws.com/ben-pedal-collector
 S3_BASE_URL = config('S3_BASE_URL')
 BUCKET = config('BUCKET')
 
