@@ -9,12 +9,12 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from decouple import config
 
-S3_BASE_URL = 'https://s3-us-east-2.amazonaws.com/'
-BUCKET = 'ben-pedal-collector'
 
 # https://s3-us-east-2.amazonaws.com/ben-pedal-collector
-
+S3_BASE_URL = config('S3_BASE_URL')
+BUCKET = config('BUCKET')
 
 # user accounts views
 
