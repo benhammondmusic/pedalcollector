@@ -6,9 +6,10 @@ So might as well keep track of them!
 
 ## Functionality
 
+- signup or log in as a user
 - add, edit and delete your music gear (effects pedals and their knobs, guitars)
 - track your favorite knob settings
-- record which guitars sound best with each pedal
+- report which guitars sound best with each pedal
 - never stop chasing _that tone_
 
 ## Tech
@@ -19,6 +20,6 @@ So might as well keep track of them!
 
 - Get in touch! [GitHub Repo](https://github.com/benhammondmusic/pedalcollector)
 
-## Deployed Link
+## Use the App!
 
-- (working on it)
+- Pedal Collector (Heroku Deployment)[https://pedalcollector.herokuapp.com/]
