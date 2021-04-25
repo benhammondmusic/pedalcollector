@@ -22,4 +22,4 @@ So might as well keep track of them!
 
 ## Use the App!
 
-- Pedal Collector [Heroku Deployment](https://pedalcollector.herokuapp.com/)
+- [Pedal Collector (Heroku Deployment)](https://pedalcollector.herokuapp.com/)
