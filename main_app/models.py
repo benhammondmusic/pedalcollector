@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Knob sweep type options: A tuple of 2-tuples
 SWEEP_TYPES = (
@@ -33,6 +34,7 @@ class Pedal(models.Model):
     amperage = models.IntegerField()
     voltage = models.IntegerField()
     guitars = models.ManyToManyField(Guitar)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
 
     def goes_to_11(self):
