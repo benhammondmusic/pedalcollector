@@ -43,8 +43,8 @@ def pedals_index(request):
   return render(request, 'pedals/index.html', { 'pedals': pedals })
 
 
-def home(request):
-    return render(request, 'home.html')
+# def home(request):
+#     return render(request, 'home.html')
 
 def about(request):
   return render(request, 'about.html')
