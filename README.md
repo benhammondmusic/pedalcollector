@@ -6,7 +6,7 @@ So might as well keep track of them!
 
 ## Screenshot
 
-![Screenshot of Pedal Collector](pedals.png)
+![Screenshot of Pedal Collector](https://github.com/benhammondmusic/pedalcollector/blob/main/pedals.png)
 
 ## Functionality
 
