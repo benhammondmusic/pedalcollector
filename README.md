@@ -4,6 +4,10 @@
 
 So might as well keep track of them!
 
+## Screenshot
+
+![Screenshot of Pedal Collector](pedals.png)
+
 ## Functionality
 
 - signup or log in as a user
